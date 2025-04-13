@@ -30,28 +30,6 @@ SELECT *
 FROM duplicate_cte
 WHERE row_num > 1;
 
--- STANDARDIZING DATA
-SELECT distinct(pizza_name)
-FROM pizza_sales_staging;
-
-SELECT pizza_name, TRIM(pizza_name)
-FROM pizza_sales_staging;
-
-UPDATE pizza_sales_staging
-SET pizza_name = TRIM(pizza_name);
-
-SELECT distinct(pizza_category)
-FROM pizza_sales_staging;
-
-SELECT distinct(pizza_ingredients)
-FROM pizza_sales_staging;
-
-SELECT order_date
-FROM pizza_sales_staging;
-
-SELECT COUNT(*) FROM pizza_sales_staging WHERE order_date = '';
-
-SELECT order_date FROM pizza_sales_staging WHERE order_date LIKE '%[^0-9/]%';
 
 SELECT order_date, 
        STR_TO_DATE(order_date, '%d-%m-%Y') AS formatted_date
